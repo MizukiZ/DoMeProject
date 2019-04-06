@@ -7,6 +7,9 @@ const port = 8000
 // set bodyParser to use
 server.use(bodyParser.json())
 
+// router
+server.use([require("./routes/tasks")])
+
 server.use((error, req, res, next) => {
   res.json({
     error: {
