@@ -1,9 +1,12 @@
 const express = require("express") // import express module
 const bodyParser = require("body-parser") // import body-parser module
+const cors = require("cors") // import body-parser module
 
 const server = express()
 const port = 8000
 
+// for using cors
+server.use(cors())
 // set bodyParser to use
 server.use(bodyParser.json())
 
