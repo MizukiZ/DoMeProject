@@ -51,4 +51,15 @@ router.delete("/task/:id", (req, res) => {
     })
 })
 
+// delte completed ones
+router.delete("/tasks", (req, res) => {
+  Task.remove({ isCompleted: true })
+    .then(() => {
+      res.json({ message: "Deleted all checked tasks" })
+    })
+    .catch(error => {
+      res.status(500).json({ error: error.message })
+    })
+})
+
 module.exports = router
