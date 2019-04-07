@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core"
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 import { TaskService } from "./task.service"
 
 @Component({
@@ -7,29 +7,21 @@ import { TaskService } from "./task.service"
   styleUrls: ["./task.component.scss"]
 })
 export class TaskComponent implements OnInit {
-  private tasks
+  // tasks data form home page
+  @Input() tasks
+  @Output() tasksOut = new EventEmitter()
   constructor(private taskService: TaskService) {}
 
-  getTasks() {
-    return this.taskService.get().subscribe(tasks => {
-      this.tasks = tasks
-      console.log(this.tasks)
-    })
-  }
-
   ngOnInit() {
-    this.getTasks()
-  }
-
-  taskClick(task) {
-    console.log(task)
+    // this.getTasks()
   }
 
   statusBoxClick(event, taskID) {
     // get status of the task (true/false)
     const isCompleted = !event.target.checked
     this.taskService.put({ isCompleted }, taskID).subscribe(() => {
-      this.getTasks()
+      // tell homepage to update the tasks
+      this.tasksOut.emit("update")
     })
   }
 }

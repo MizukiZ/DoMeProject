@@ -1,6 +1,6 @@
-<ion-content>
+<ion-content fullscreen="true" style="--padding-bottom:80px">
   <h2 class="text-center">DoMe</h2>
-  <app-task></app-task>
+  <app-task [tasks]="tasks" (tasksOut)="receiveFromTask($event)"></app-task>
 
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">
     <ion-fab-button color="dark">
@@ -8,7 +8,7 @@
     </ion-fab-button>
   </ion-fab>
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button color="danger">
+    <ion-fab-button color="danger" (click)="deleteCompleted()">
       <ion-icon name="trash"></ion-icon>
     </ion-fab-button>
   </ion-fab>

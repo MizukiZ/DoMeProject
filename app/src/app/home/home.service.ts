@@ -9,11 +9,16 @@ const httpOptions = {
 @Injectable({
   providedIn: "root"
 })
-export class TaskService {
+export class HomeService {
   constructor(private http: HttpClient) {}
 
+  // get request
+  get() {
+    return this.http.get(`${apiUrl}/tasks`)
+  }
+
   // put request
-  put(data, taskID) {
-    return this.http.put(`${apiUrl}/task/${taskID}/`, data, httpOptions)
+  destroyCompleted() {
+    return this.http.delete(`${apiUrl}/tasks`)
   }
 }
