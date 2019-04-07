@@ -1,5 +1,11 @@
 <ion-content fullscreen="true" style="--padding-bottom:80px">
   <h2 class="text-center appTitle">DoMe</h2>
+
+  <ion-chip color="tertiary">
+    <ion-icon name="funnel"></ion-icon>
+    <ion-label>{{ readableSortOption[sortOption] }}</ion-label>
+  </ion-chip>
+
   <app-task [tasks]="tasks" (tasksOut)="receiveFromTask($event)"></app-task>
 
   <ion-fab vertical="bottom" horizontal="start" slot="fixed">

@@ -12,6 +12,12 @@ import { TaskSortComponent } from "../task-sort/task-sort.component"
 export class HomePage implements OnInit {
   private tasks
   private sortOption
+
+  private readableSortOption = {
+    dueDate: "Due Date",
+    priority: "Priority",
+    createdAt: "Created Date"
+  }
   constructor(
     private homeS: HomeService,
     public modalController: ModalController
@@ -79,7 +85,7 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     // set initial data
-    this.sortOption = "priority"
+    this.sortOption = "dueDate"
     this.getTasks(this.sortOption)
   }
 }
