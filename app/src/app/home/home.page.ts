@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core"
 import { HomeService } from "./home.service"
 import { ModalController } from "@ionic/angular"
 import { NewTaskComponent } from "../new-task/new-task.component"
+import { TaskSortComponent } from "../task-sort/task-sort.component"
 
 @Component({
   selector: "app-home",
@@ -10,6 +11,7 @@ import { NewTaskComponent } from "../new-task/new-task.component"
 })
 export class HomePage implements OnInit {
   private tasks
+  private sortOption
   constructor(
     private homeS: HomeService,
     public modalController: ModalController
@@ -50,12 +52,26 @@ export class HomePage implements OnInit {
     return await modal.present()
   }
 
+  async taskSortModalOpen() {
+    const modal = await this.modalController.create({
+      component: TaskSortComponent,
+      componentProps: this.sortOption
+    })
+
+    // set dismiss callback funciton
+    modal.onDidDismiss().then(data => {})
+
+    return await modal.present()
+  }
+
   // receive eveent result from task component
   receiveFromTask(tasks) {
     this.getTasks()
   }
 
   ngOnInit() {
+    // set initial data
+    this.sortOption = "dueDate"
     this.getTasks()
   }
 }

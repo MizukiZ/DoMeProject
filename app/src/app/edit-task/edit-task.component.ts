@@ -26,6 +26,5 @@ export class EditTaskComponent implements OnInit {
 
   ngOnInit() {
     this.editTask = this.task
-    console.log(this.task)
   }
 }

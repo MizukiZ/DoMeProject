@@ -1,0 +1,51 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="text-center">Sort Options</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-radio-group>
+          <ion-list-header>
+            Sort by:
+          </ion-list-header>
+
+          <ion-item>
+            <ion-label>Due Date</ion-label>
+            <ion-radio
+              value="dueDate"
+              [checked]="dueDate == sortOption"
+            ></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Priority</ion-label>
+            <ion-radio
+              value="priority"
+              [checked]="priority === sortOption"
+            ></ion-radio>
+          </ion-item>
+
+          <ion-item>
+            <ion-label>Created Date</ion-label>
+            <ion-radio
+              value="createdDate"
+              [checked]="createdDate === sortOption"
+            ></ion-radio>
+          </ion-item>
+        </ion-radio-group>
+      </ion-list>
+    </ion-card-content>
+
+    <ion-grid style="margin-top:3em">
+      <ion-row justify-content: center>
+        <ion-col size="6" class="text-center">
+          <ion-button color="danger" (click)="dissmissModal()">Back</ion-button>
+        </ion-col>
+        <ion-col size="6" class="text-center">
+          <ion-button color="success">Sort</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>

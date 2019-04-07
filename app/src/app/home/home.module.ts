@@ -8,6 +8,7 @@ import { TaskComponent } from "../task/task.component"
 import { NewTaskComponent } from "../new-task/new-task.component"
 import { ViewTaskComponent } from "../view-task/view-task.component"
 import { EditTaskComponent } from "../edit-task/edit-task.component"
+import { TaskSortComponent } from "../task-sort/task-sort.component"
 import { HomePage } from "./home.page"
 
 @NgModule({
@@ -27,8 +28,14 @@ import { HomePage } from "./home.page"
     TaskComponent,
     NewTaskComponent,
     ViewTaskComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    TaskSortComponent
   ],
-  entryComponents: [NewTaskComponent, ViewTaskComponent, EditTaskComponent]
+  entryComponents: [
+    NewTaskComponent,
+    ViewTaskComponent,
+    EditTaskComponent,
+    TaskSortComponent
+  ]
 })
 export class HomePageModule {}
