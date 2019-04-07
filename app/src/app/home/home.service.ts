@@ -23,6 +23,11 @@ export class HomeService {
   }
 
   // put request
+  put(data) {
+    return this.http.put(`${apiUrl}/task/${data._id}/`, data, httpOptions)
+  }
+
+  // put request
   destroyCompleted() {
     return this.http.delete(`${apiUrl}/tasks`)
   }

@@ -7,6 +7,7 @@ import { RouterModule } from "@angular/router"
 import { TaskComponent } from "../task/task.component"
 import { NewTaskComponent } from "../new-task/new-task.component"
 import { ViewTaskComponent } from "../view-task/view-task.component"
+import { EditTaskComponent } from "../edit-task/edit-task.component"
 import { HomePage } from "./home.page"
 
 @NgModule({
@@ -21,7 +22,13 @@ import { HomePage } from "./home.page"
       }
     ])
   ],
-  declarations: [HomePage, TaskComponent, NewTaskComponent, ViewTaskComponent],
-  entryComponents: [NewTaskComponent, ViewTaskComponent]
+  declarations: [
+    HomePage,
+    TaskComponent,
+    NewTaskComponent,
+    ViewTaskComponent,
+    EditTaskComponent
+  ],
+  entryComponents: [NewTaskComponent, ViewTaskComponent, EditTaskComponent]
 })
 export class HomePageModule {}
