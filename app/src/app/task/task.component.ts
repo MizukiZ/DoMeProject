@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core"
 import { TaskService } from "./task.service"
+import { ModalController } from "@ionic/angular"
+import { ViewTaskComponent } from "../view-task/view-task.component"
 
 @Component({
   selector: "app-task",
@@ -19,7 +21,10 @@ export class TaskComponent implements OnInit {
     4: { color: "warning", word: "High" },
     5: { color: "danger", word: "Very high" }
   }
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    public modalController: ModalController
+  ) {}
 
   ngOnInit() {
     // this.getTasks()
@@ -32,5 +37,17 @@ export class TaskComponent implements OnInit {
       // tell homepage to update the tasks
       this.tasksOut.emit("update")
     })
+  }
+
+  async taskClick(task) {
+    const modal = await this.modalController.create({
+      component: ViewTaskComponent,
+      componentProps: { task }
+    })
+
+    // set dismiss callback funciton
+    modal.onDidDismiss().then(data => {})
+
+    return await modal.present()
   }
 }

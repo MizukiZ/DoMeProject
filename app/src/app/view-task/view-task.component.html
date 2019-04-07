@@ -1,0 +1,47 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-subtitle style="text-align: end;"
+        >Created date:
+        {{ task.createdAt | date: "MM/dd/yyyy" }}</ion-card-subtitle
+      >
+      <ion-card-title class="text-center">{{ task.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Priority:</ion-label>
+        <ion-badge color="{{ prioritySetting[task.priority]['color'] }}">{{
+          prioritySetting[task.priority]["word"]
+        }}</ion-badge>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Due Date:</ion-label>
+        {{ task.dueDate | date: "MM/dd/yyyy" }}
+      </ion-item>
+
+      <ion-card>
+        <ion-card-header>
+          <ion-card-subtitle>Description:</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          {{ task.description }}
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+
+    <ion-grid style="margin-top:3em">
+      <ion-row justify-content: center>
+        <ion-col size="6" class="text-center">
+          <ion-button color="danger" (click)="dissmissModal()"
+            >Cancel</ion-button
+          >
+        </ion-col>
+        <ion-col size="6" class="text-center">
+          <ion-button color="success">Edit</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+</ion-content>
