@@ -26,7 +26,7 @@ export class ViewTaskComponent implements OnInit {
   ngOnInit() {}
 
   dissmissModal() {
-    this.modalController.dismiss(null)
+    this.modalController.dismiss()
   }
 
   async editTaskModalOpen() {
@@ -37,7 +37,7 @@ export class ViewTaskComponent implements OnInit {
 
     // set dismiss callback funciton
     modal.onDidDismiss().then(data => {
-      // if return data form new modal is not null, create new one
+      // if return data form new modal is not null, update the task
       if (data.data) {
         const newTask = data.data
         this.homeC.put(newTask).subscribe(() => {})

@@ -8,7 +8,7 @@ router.get("/tasks", (req, res) => {
   const { sortQuery } = req.query
   // get all records
 
-  if (sortQuery == "priority") {
+  if (sortQuery === "priority") {
     // decending order for priority
     Task.find()
       .sort({ priority: -1 })
@@ -18,15 +18,16 @@ router.get("/tasks", (req, res) => {
       .catch(error => {
         res.json({ error })
       })
+  } else {
+    Task.find()
+      .sort(sortQuery)
+      .then(tasks => {
+        res.json(tasks)
+      })
+      .catch(error => {
+        res.json({ error })
+      })
   }
-  Task.find()
-    .sort(sortQuery)
-    .then(tasks => {
-      res.json(tasks)
-    })
-    .catch(error => {
-      res.json({ error })
-    })
 })
 
 // create

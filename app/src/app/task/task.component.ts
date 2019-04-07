@@ -44,7 +44,10 @@ export class TaskComponent implements OnInit {
     })
 
     // set dismiss callback funciton
-    modal.onDidDismiss().then(data => {})
+    modal.onDidDismiss().then(() => {
+      // tell homepage to update the tasks
+      this.tasksOut.emit("update")
+    })
 
     return await modal.present()
   }

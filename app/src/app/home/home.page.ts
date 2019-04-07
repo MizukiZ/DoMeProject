@@ -18,8 +18,9 @@ export class HomePage implements OnInit {
   ) {}
 
   getTasks(sortOption) {
-    this.homeS.get(this.sortOption).subscribe(tasks => {
+    this.homeS.get(sortOption).subscribe(tasks => {
       this.tasks = tasks
+      console.log(this.tasks)
     })
   }
 
@@ -70,7 +71,9 @@ export class HomePage implements OnInit {
   }
 
   // receive eveent result from task component
-  receiveFromTask(tasks) {
+  receiveFromTask() {
+    console.log(this.sortOption)
+
     this.getTasks(this.sortOption)
   }
 
