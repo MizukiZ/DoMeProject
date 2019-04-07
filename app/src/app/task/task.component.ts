@@ -26,9 +26,7 @@ export class TaskComponent implements OnInit {
     public modalController: ModalController
   ) {}
 
-  ngOnInit() {
-    // this.getTasks()
-  }
+  ngOnInit() {}
 
   statusBoxClick(event, taskID) {
     // get status of the task (true/false)

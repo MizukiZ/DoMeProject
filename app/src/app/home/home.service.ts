@@ -13,8 +13,8 @@ export class HomeService {
   constructor(private http: HttpClient) {}
 
   // get request
-  get() {
-    return this.http.get(`${apiUrl}/tasks`)
+  get(sortOption) {
+    return this.http.get(`${apiUrl}/tasks?sortQuery=${sortOption}`)
   }
 
   // post request

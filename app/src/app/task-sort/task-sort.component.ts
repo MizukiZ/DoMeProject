@@ -8,10 +8,19 @@ import { ModalController } from "@ionic/angular"
 })
 export class TaskSortComponent implements OnInit {
   @Input() sortOption
+  private sortSetting
   constructor(public modalController: ModalController) {}
+
+  sortOptionSet() {
+    this.modalController.dismiss(this.sortSetting)
+  }
 
   dissmissModal() {
     this.modalController.dismiss()
+  }
+
+  sortOptionChange(e) {
+    this.sortSetting = e.target.value
   }
 
   ngOnInit() {}

@@ -5,7 +5,7 @@
     </ion-card-header>
     <ion-card-content>
       <ion-list>
-        <ion-radio-group>
+        <ion-radio-group (ionChange)="sortOptionChange($event)">
           <ion-list-header>
             Sort by:
           </ion-list-header>
@@ -14,7 +14,7 @@
             <ion-label>Due Date</ion-label>
             <ion-radio
               value="dueDate"
-              [checked]="dueDate == sortOption"
+              checked="{{ 'dueDate' == sortOption }}"
             ></ion-radio>
           </ion-item>
 
@@ -22,15 +22,15 @@
             <ion-label>Priority</ion-label>
             <ion-radio
               value="priority"
-              [checked]="priority === sortOption"
+              checked="{{ 'priority' == sortOption }}"
             ></ion-radio>
           </ion-item>
 
           <ion-item>
             <ion-label>Created Date</ion-label>
             <ion-radio
-              value="createdDate"
-              [checked]="createdDate === sortOption"
+              value="createdAt"
+              checked="{{ 'createdAt' == sortOption }}"
             ></ion-radio>
           </ion-item>
         </ion-radio-group>
@@ -43,7 +43,9 @@
           <ion-button color="danger" (click)="dissmissModal()">Back</ion-button>
         </ion-col>
         <ion-col size="6" class="text-center">
-          <ion-button color="success">Sort</ion-button>
+          <ion-button color="success" (click)="sortOptionSet()"
+            >Sort</ion-button
+          >
         </ion-col>
       </ion-row>
     </ion-grid>

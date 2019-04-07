@@ -17,21 +17,21 @@ export class HomePage implements OnInit {
     public modalController: ModalController
   ) {}
 
-  getTasks() {
-    this.homeS.get().subscribe(tasks => {
+  getTasks(sortOption) {
+    this.homeS.get(this.sortOption).subscribe(tasks => {
       this.tasks = tasks
     })
   }
 
   addTask(newTask) {
     this.homeS.add({ newTask }).subscribe(() => {
-      this.getTasks()
+      this.getTasks(this.sortOption)
     })
   }
 
   deleteCompleted() {
     this.homeS.destroyCompleted().subscribe(() => {
-      this.getTasks()
+      this.getTasks(this.sortOption)
     })
   }
 
@@ -55,23 +55,28 @@ export class HomePage implements OnInit {
   async taskSortModalOpen() {
     const modal = await this.modalController.create({
       component: TaskSortComponent,
-      componentProps: this.sortOption
+      componentProps: { sortOption: this.sortOption }
     })
 
     // set dismiss callback funciton
-    modal.onDidDismiss().then(data => {})
+    modal.onDidDismiss().then(data => {
+      if (data.data) {
+        this.sortOption = data.data
+        this.getTasks(this.sortOption)
+      }
+    })
 
     return await modal.present()
   }
 
   // receive eveent result from task component
   receiveFromTask(tasks) {
-    this.getTasks()
+    this.getTasks(this.sortOption)
   }
 
   ngOnInit() {
     // set initial data
-    this.sortOption = "dueDate"
-    this.getTasks()
+    this.sortOption = "priority"
+    this.getTasks(this.sortOption)
   }
 }

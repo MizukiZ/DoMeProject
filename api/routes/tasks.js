@@ -5,9 +5,22 @@ const router = new express.Router() // get Router instance froom express
 
 // get
 router.get("/tasks", (req, res) => {
-  const status = req.query.status
+  const { sortQuery } = req.query
   // get all records
-  Task.find({})
+
+  if (sortQuery == "priority") {
+    // decending order for priority
+    Task.find()
+      .sort({ priority: -1 })
+      .then(tasks => {
+        res.json(tasks)
+      })
+      .catch(error => {
+        res.json({ error })
+      })
+  }
+  Task.find()
+    .sort(sortQuery)
     .then(tasks => {
       res.json(tasks)
     })
