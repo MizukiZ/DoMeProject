@@ -1,0 +1,63 @@
+<ion-content>
+  <h2 class="text-center">New Task</h2>
+
+  <form (ngSubmit)="newTaskForm()">
+    <ion-item>
+      <ion-label position="stacked">Title</ion-label>
+      <ion-input [(ngModel)]="newTask.title" name="title" autofocus></ion-input>
+    </ion-item>
+
+    <ion-list>
+      <ion-list-header>
+        Priority
+      </ion-list-header>
+      <ion-item>
+        <ion-range
+          min="1"
+          max="5"
+          step="1"
+          snaps="true"
+          color="secondary"
+          pin="true"
+          [(ngModel)]="newTask.priority"
+          name="priority"
+          ><ion-label slot="start">Very Low</ion-label>
+          <ion-label slot="end">Very High</ion-label></ion-range
+        >
+      </ion-item>
+    </ion-list>
+
+    <ion-item>
+      <ion-label position="stacked">Due Date</ion-label>
+      <ion-datetime
+        display-format="DD/MM/YYYY"
+        picker-format="DD MMMM YYYY"
+        [(ngModel)]="newTask.dueDate"
+        name="dueDate"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Description</ion-label>
+      <ion-textarea
+        rows="4"
+        cols="20"
+        [(ngModel)]="newTask.description"
+        name="description"
+      ></ion-textarea>
+    </ion-item>
+
+    <ion-grid style="margin-top:3em">
+      <ion-row justify-content: center>
+        <ion-col size="6" class="text-center">
+          <ion-button color="danger" (click)="dissmissModal()"
+            >Cancel</ion-button
+          >
+        </ion-col>
+        <ion-col size="6" class="text-center">
+          <ion-button type="submit" color="primary">Create</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

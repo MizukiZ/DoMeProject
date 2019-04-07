@@ -17,6 +17,11 @@ export class HomeService {
     return this.http.get(`${apiUrl}/tasks`)
   }
 
+  // post request
+  add(data) {
+    return this.http.post(`${apiUrl}/tasks`, data.newTask, httpOptions)
+  }
+
   // put request
   destroyCompleted() {
     return this.http.delete(`${apiUrl}/tasks`)

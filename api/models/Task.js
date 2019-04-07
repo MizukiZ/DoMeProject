@@ -5,8 +5,9 @@ const taskSchema = new mongo.Schema(
   {
     title: String,
     category: String,
-    priority: String,
-    isCompleted: Boolean,
+    priority: Number, // 1 to 5 (very low to very high)
+    isCompleted: { type: Boolean, default: false },
+    description: String,
     dueDate: Date
   },
   {
