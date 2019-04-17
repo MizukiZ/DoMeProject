@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 
-const apiUrl = "http://localhost:8000" // backend server url
+const apiUrl = "https://api-kxcpxebwix.now.sh" // backend server url
 const httpOptions = {
   headers: new HttpHeaders({ "Content-Type": "application/json" })
 }

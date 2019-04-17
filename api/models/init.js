@@ -4,7 +4,7 @@ const mongoose = require("mongoose") // import mongoose module
 mongoose.Promise = global.Promise
 
 mongoose
-  .connect("mongodb://localhost:27017/dome-database")
+  .connect("mongodb://mizuki:4351zzzz@ds011271.mlab.com:11271/dome-database")
   .then(() => {
     console.log("Successfully connected to mongo database")
   })
