@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { ModalController } from "@ionic/angular"
+import { AlertController } from "@ionic/angular"
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx"
 
 @Component({
@@ -13,7 +14,8 @@ export class NewTaskComponent implements OnInit {
 
   constructor(
     public modalController: ModalController,
-    private camera: Camera
+    private camera: Camera,
+    public alertController: AlertController
   ) {}
 
   cameraBtn() {
@@ -34,13 +36,34 @@ export class NewTaskComponent implements OnInit {
     )
   }
 
-  newTaskForm() {
-    // add photo
-    this.newTask["photo"] = this.photo
-    this.modalController.dismiss(this.newTask)
+  async formAlert() {
+    const alert = await this.alertController.create({
+      header: "Warning",
+      subHeader: "",
+      message: "Title and Due Date are reqired.",
+      buttons: ["OK"]
+    })
 
-    // init new task
-    this.newTask = {}
+    await alert.present()
+  }
+
+  newTaskForm() {
+    // require field vaildations
+    if (
+      !this.newTask["title"] ||
+      this.newTask["title"] == "" ||
+      !this.newTask["dueDate"] ||
+      this.newTask["dueDate"] == ""
+    ) {
+      this.formAlert()
+    } else {
+      // add photo
+      this.newTask["photo"] = this.photo
+      this.modalController.dismiss(this.newTask)
+
+      // init new task
+      this.newTask = {}
+    }
   }
   dissmissModal() {
     this.modalController.dismiss(null)

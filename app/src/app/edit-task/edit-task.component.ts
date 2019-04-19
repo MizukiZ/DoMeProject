@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core"
 import { ModalController } from "@ionic/angular"
+import { AlertController } from "@ionic/angular"
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx"
 
 @Component({
@@ -13,7 +14,8 @@ export class EditTaskComponent implements OnInit {
 
   constructor(
     public modalController: ModalController,
-    private camera: Camera
+    private camera: Camera,
+    public alertController: AlertController
   ) {}
 
   cameraBtn() {
@@ -34,10 +36,26 @@ export class EditTaskComponent implements OnInit {
     )
   }
 
+  async formAlert() {
+    const alert = await this.alertController.create({
+      header: "Warning",
+      subHeader: "",
+      message: "Title is reqired.",
+      buttons: ["OK"]
+    })
+
+    await alert.present()
+  }
+
   editTaskForm() {
-    this.modalController.dismiss(this.editTask)
-    // init new task
-    this.editTask = {}
+    // require field vaildations
+    if (this.task["title"] == "") {
+      this.formAlert()
+    } else {
+      this.modalController.dismiss(this.editTask)
+      // init new task
+      this.editTask = {}
+    }
   }
 
   dissmissModal() {
