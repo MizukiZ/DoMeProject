@@ -8,6 +8,11 @@
       <ion-card-title class="text-center">{{ task.title }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
+      <ion-item *ngIf="task.photo">
+        <ion-label position="stacked">Image</ion-label>
+        <ion-img src="{{ task.photo }}"> </ion-img>
+      </ion-item>
+
       <ion-item>
         <ion-label>Priority:</ion-label>
         <ion-badge color="{{ prioritySetting[task.priority]['color'] }}">{{
