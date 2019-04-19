@@ -4,6 +4,7 @@ import { ModalController } from "@ionic/angular"
 import { NewTaskComponent } from "../new-task/new-task.component"
 import { TaskSortComponent } from "../task-sort/task-sort.component"
 import { AlertController } from "@ionic/angular"
+import { LoadingController } from "@ionic/angular"
 
 @Component({
   selector: "app-home",
@@ -13,6 +14,7 @@ import { AlertController } from "@ionic/angular"
 export class HomePage implements OnInit {
   private tasks
   private sortOption
+  private loading
 
   private readableSortOption = {
     dueDate: "Due Date",
@@ -22,12 +24,16 @@ export class HomePage implements OnInit {
   constructor(
     private homeS: HomeService,
     public alertController: AlertController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public loadingController: LoadingController
   ) {}
 
   getTasks(sortOption) {
+    this.presentLoading()
+
     this.homeS.get(sortOption).subscribe(tasks => {
       this.tasks = tasks
+      this.loadingController.dismiss()
     })
   }
 
@@ -57,6 +63,14 @@ export class HomePage implements OnInit {
     })
 
     return await modal.present()
+  }
+
+  async presentLoading() {
+    const loadingElement = await this.loadingController.create({
+      message: "Loading..",
+      spinner: "crescent"
+    })
+    return await loadingElement.present()
   }
 
   async deletionAlertConfirm() {
