@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core"
 import { ModalController } from "@ionic/angular"
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx"
 
 @Component({
   selector: "app-new-task",
@@ -8,10 +9,36 @@ import { ModalController } from "@ionic/angular"
 })
 export class NewTaskComponent implements OnInit {
   private newTask = {}
-  constructor(public modalController: ModalController) {}
+  public photo = null
+
+  constructor(
+    public modalController: ModalController,
+    private camera: Camera
+  ) {}
+
+  cameraBtn() {
+    // camera options
+    const options: CameraOptions = {
+      quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+    this.camera.getPicture(options).then(
+      imageData => {
+        this.photo = (<any>window).Ionic.WebView.convertFileSrc(imageData)
+      },
+      err => {
+        // Handle error
+      }
+    )
+  }
 
   newTaskForm() {
+    // add photo
+    this.newTask["photo"] = this.photo
     this.modalController.dismiss(this.newTask)
+
     // init new task
     this.newTask = {}
   }

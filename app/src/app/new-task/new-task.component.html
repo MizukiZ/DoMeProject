@@ -1,7 +1,18 @@
 <ion-content>
+  <ion-fab vertical="top" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="cameraBtn()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
   <h2 class="text-center appTitle">New Task</h2>
 
   <form (ngSubmit)="newTaskForm()">
+    <ion-item *ngIf="photo">
+      <ion-label position="stacked">Image</ion-label>
+      <ion-img src="{{ photo }}"> </ion-img>
+    </ion-item>
+
     <ion-item>
       <ion-label position="stacked">Title</ion-label>
       <ion-input [(ngModel)]="newTask.title" name="title" autofocus></ion-input>
