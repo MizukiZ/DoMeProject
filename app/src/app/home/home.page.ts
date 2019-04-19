@@ -3,6 +3,7 @@ import { HomeService } from "./home.service"
 import { ModalController } from "@ionic/angular"
 import { NewTaskComponent } from "../new-task/new-task.component"
 import { TaskSortComponent } from "../task-sort/task-sort.component"
+import { AlertController } from "@ionic/angular"
 
 @Component({
   selector: "app-home",
@@ -20,6 +21,7 @@ export class HomePage implements OnInit {
   }
   constructor(
     private homeS: HomeService,
+    public alertController: AlertController,
     public modalController: ModalController
   ) {}
 
@@ -36,9 +38,8 @@ export class HomePage implements OnInit {
   }
 
   deleteCompleted() {
-    this.homeS.destroyCompleted().subscribe(() => {
-      this.getTasks(this.sortOption)
-    })
+    // open confirmation dialog
+    this.deletionAlertConfirm()
   }
 
   async newTaskModalOpen() {
@@ -56,6 +57,34 @@ export class HomePage implements OnInit {
     })
 
     return await modal.present()
+  }
+
+  async deletionAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: "Delete All Completed Tasks",
+      message: "<strong>Are you sure</strong>?",
+      buttons: [
+        {
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: () => {
+            // cancel
+          }
+        },
+        {
+          text: "Okay",
+          handler: () => {
+            // confirm process. Delete all
+            this.homeS.destroyCompleted().subscribe(() => {
+              this.getTasks(this.sortOption)
+            })
+          }
+        }
+      ]
+    })
+
+    await alert.present()
   }
 
   async taskSortModalOpen() {
