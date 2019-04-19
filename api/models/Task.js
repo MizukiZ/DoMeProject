@@ -4,6 +4,7 @@ const mongo = require("./init") // initialize connection with mondodb
 const taskSchema = new mongo.Schema(
   {
     title: String,
+    photo: String,
     category: String,
     priority: Number, // 1 to 5 (very low to very high)
     isCompleted: { type: Boolean, default: false },
