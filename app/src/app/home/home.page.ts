@@ -28,17 +28,23 @@ export class HomePage implements OnInit {
     public loadingController: LoadingController
   ) {}
 
+  // get tasks data from home service
   getTasks(sortOption) {
+    // set loading message
     this.presentLoading()
 
     this.homeS.get(sortOption).subscribe(tasks => {
+      // set return data to self tasks
       this.tasks = tasks
+      // close loading message
       this.loadingController.dismiss()
     })
   }
 
+  // create new task
   addTask(newTask) {
     this.homeS.add({ newTask }).subscribe(() => {
+      // upload self tasks with new data
       this.getTasks(this.sortOption)
     })
   }
@@ -65,6 +71,7 @@ export class HomePage implements OnInit {
     return await modal.present()
   }
 
+  // method for opening loading message modal
   async presentLoading() {
     const loadingElement = await this.loadingController.create({
       message: "Loading..",
@@ -73,6 +80,7 @@ export class HomePage implements OnInit {
     return await loadingElement.present()
   }
 
+  // method for opeing confirmation dialog
   async deletionAlertConfirm() {
     const alert = await this.alertController.create({
       header: "Delete All Completed Tasks",
