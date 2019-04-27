@@ -2,6 +2,8 @@ const mongoose = require("mongoose") // import mongoose module
 
 // use promise
 mongoose.Promise = global.Promise
+
+// set mlab url which is form Heroku env varialbes
 mongo_url = process.env.MLAB_URL
 
 mongoose

@@ -3,6 +3,8 @@ const bodyParser = require("body-parser") // import body-parser module
 const cors = require("cors") // import body-parser module
 
 const server = express()
+
+// process env is a value from Heroku
 const port = process.env.PORT || 8000
 
 // for using cors
@@ -21,6 +23,7 @@ server.use((error, req, res, next) => {
   })
 })
 
+// create server with port variable
 server.listen(port, error => {
   if (error) {
     console.error("Server connection fail", error)

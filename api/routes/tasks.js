@@ -19,6 +19,7 @@ router.get("/tasks", (req, res) => {
         res.json({ error })
       })
   } else {
+    // ascending order
     Task.find()
       .sort(sortQuery)
       .then(tasks => {
@@ -30,7 +31,7 @@ router.get("/tasks", (req, res) => {
   }
 })
 
-// create
+// create task
 router.post("/tasks", (req, res) => {
   Task.create(req.body)
     .then(task => {
@@ -41,7 +42,7 @@ router.post("/tasks", (req, res) => {
     })
 })
 
-// update
+// update task
 router.put("/task/:id", (req, res) => {
   const { id } = req.params
   Task.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
@@ -53,7 +54,7 @@ router.put("/task/:id", (req, res) => {
     })
 })
 
-// delete
+// delete task
 router.delete("/task/:id", (req, res) => {
   const { id } = req.params
   Task.findByIdAndDelete(id)
