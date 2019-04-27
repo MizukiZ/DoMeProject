@@ -12,7 +12,7 @@ const httpOptions = {
 export class TaskService {
   constructor(private http: HttpClient) {}
 
-  // put request
+  // put request to server side
   put(data, taskID) {
     return this.http.put(`${apiUrl}/task/${taskID}/`, data, httpOptions)
   }

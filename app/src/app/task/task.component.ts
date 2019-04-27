@@ -37,6 +37,7 @@ export class TaskComponent implements OnInit {
     })
   }
 
+  // click evernt for clicking task cards
   async taskClick(task) {
     const modal = await this.modalController.create({
       component: ViewTaskComponent,
