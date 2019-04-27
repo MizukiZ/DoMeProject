@@ -11,6 +11,7 @@ export class TaskSortComponent implements OnInit {
   private sortSetting
   constructor(public modalController: ModalController) {}
 
+  // dissmiss callback. the parent will receive sortSetting value.
   sortOptionSet() {
     this.modalController.dismiss(this.sortSetting)
   }
@@ -19,6 +20,7 @@ export class TaskSortComponent implements OnInit {
     this.modalController.dismiss()
   }
 
+  // check box event
   sortOptionChange(e) {
     this.sortSetting = e.target.value
   }

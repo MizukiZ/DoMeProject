@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core"
 import { ModalController } from "@ionic/angular"
 import { AlertController } from "@ionic/angular"
+
+// importing camera modules
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx"
 
 @Component({
@@ -18,6 +20,7 @@ export class NewTaskComponent implements OnInit {
     public alertController: AlertController
   ) {}
 
+  // click event for camera icon button
   cameraBtn() {
     // camera options
     const options: CameraOptions = {
@@ -36,6 +39,7 @@ export class NewTaskComponent implements OnInit {
     )
   }
 
+  // form validations alert message
   async formAlert() {
     const alert = await this.alertController.create({
       header: "Warning",
